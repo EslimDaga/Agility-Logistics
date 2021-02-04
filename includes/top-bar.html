@@ -13,8 +13,8 @@
     <div class="dropdown-box w-56">
       <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">
         <div class="p-4 border-b border-theme-40 dark:border-dark-3">
-          <div class="font-medium">Eslim Daga</div>
-          <div class="text-xs text-theme-41 dark:text-gray-600">Desarrollador Frontend</div>
+          <div class="font-medium">{{ user }}</div>
+          <div class="text-xs text-theme-41 dark:text-gray-600">{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</div>
         </div>
         <div class="p-2 border-t border-theme-40 dark:border-dark-3">
           <a href="{% url 'logout' %}"
