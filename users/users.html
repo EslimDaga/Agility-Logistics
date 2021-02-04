@@ -29,39 +29,26 @@
             <table id="example" class="display" style="width:100%">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Nombre de usuario</th>
+                  <th>Apellidos</th>
+                  <th>Nombres</th>
+                  <th>ultimo inicio de sesión</th>
+                  <th>Tipo de usuario</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
+                {% for user in users %}
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_login }}</td>
+                  <td>{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</td>
+                  <td></td>
                 </tr>
-                <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011/07/25</td>
-                  <td>$170,750</td>
-                </tr>
-                <tr>
-                  <td>Ashton Cox</td>
-                  <td>Junior Technical Author</td>
-                  <td>San Francisco</td>
-                  <td>66</td>
-                  <td>2009/01/12</td>
-                  <td>$86,000</td>
-                </tr>
+                {% endfor %}
+                                
               </tbody>
             </table>
           </div>
