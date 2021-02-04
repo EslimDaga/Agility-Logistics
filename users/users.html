@@ -40,15 +40,14 @@
               <tbody>
                 {% for user in users %}
                 <tr>
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.last_name }}</td>
-                  <td>{{ user.first_name }}</td>
-                  <td>{{ user.last_login }}</td>
-                  <td>{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</td>
-                  <td></td>
+                  <td class="text-center">{{ user.username }}</td>
+                  <td class="text-center">{{ user.last_name }}</td>
+                  <td class="text-center">{{ user.first_name }}</td>
+                  <td class="text-center">{{ user.last_login }}</td>
+                  <td class="text-center">{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</td>
+                  <td class="text-center"></td>
                 </tr>
                 {% endfor %}
-                                
               </tbody>
             </table>
           </div>
