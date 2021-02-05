@@ -1612,7 +1612,7 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
         box-shadow: none!important;
     }
     header.tabMobileView img {
-        width: 47px;
+        width: 115px;
         margin-left: 5px;
     }
 
