@@ -7,6 +7,34 @@
 <link rel="stylesheet" type="text/css" href="{% static 'plugins/animate/animate.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/modals/component.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/ui-kit/custom-modal.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/bootstrap-select/bootstrap-select.min.css' %}">
+<style>
+  .special {
+    font-weight: bold !important;
+    color: #fff !important;
+    background: #e7515a !important;
+    text-transform: uppercase;
+  }
+  .bootstrap-select.btn-group .dropdown-menu a.dropdown-item span.dropdown-item-inner {
+    color: #171820;
+  }
+  .dropdown-item:active {
+    background-color: #f1f3f9;
+  }
+  .dropdown-menu.select-dropdown .dropdown-item:focus,
+  .dropdown-menu.select-dropdown .dropdown-item:hover {
+    background-color: #e6e3fe;
+  }
+  .dropdown-item.active {
+    background-color: #f1f3f0;
+  }
+  .row [class*="col-"] .widget .widget-header h4 {
+    color: #6156ce;
+  }
+  .btn-group.bootstrap-select.dropup:focus {
+    outline: none;
+  }
+</style>
 <!--  END CUSTOM STYLE FILE  -->
 {% endblock %}
 {% block container %}
@@ -95,30 +123,7 @@
     </div>
   </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Liquidaciones</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="">Número de liquidación</label>
-          <input type="text" class="form-control" name="">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-rounded mb-4 mt-2">Save changes</button>
-        <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'charges/liquidation-create-modal.html' %}
 {% endblock %}
 {% block script_content %}
 <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
@@ -130,6 +135,7 @@
 <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
 <script src="{% static 'assets/js/modal/classie.js' %}"></script>
 <script src="{% static 'assets/js/modal/modalEffects.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
 <script>
   $('#html5-extension').DataTable({
     dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
