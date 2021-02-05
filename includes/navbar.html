@@ -1,0 +1,26 @@
+{% load static %}
+<header class="header navbar fixed-top navbar-expand-sm">
+  <a href="javascript:void(0);" class="sidebarCollapse d-none d-lg-block" data-placement="bottom"><i
+      class="flaticon-menu-line-2"></i></a>
+  <ul class="navbar-nav flex-row">
+    <li class="nav-item dropdown language-dropdown ml-1  ml-lg-0">
+      <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="flagDropdown" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <img src="{% static 'assets/img/peru.svg' %}" alt=""> <span class="d-lg-inline-block d-none"></span>
+      </a>
+    </li>
+  </ul>
+  <ul class="navbar-nav flex-row ml-lg-auto">
+    <li class="nav-item dropdown user-profile-dropdown ml-lg-0 mr-lg-2 ml-3 order-lg-0 order-1">
+      <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="flaticon-user-fill"></span>
+      </a>
+      <div class="dropdown-menu  position-absolute" aria-labelledby="userProfileDropdown">
+        <a class="dropdown-item" href="{% url 'logout' %}">
+          <i class="mr-1 flaticon-power-button"></i> <span>Cerrar sesión</span>
+        </a>
+      </div>
+    </li>
+  </ul>
+</header>
