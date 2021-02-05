@@ -1,83 +1,120 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_content %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
 {% endblock %}
 {% block container %}
-<div class="grid grid-cols-12 gap-6">
-  <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-    <!-- BEGIN: General Report -->
-    <div class="col-span-12 mt-8">
-      <div class="intro-y flex items-center h-10">
-        <h2 class="text-lg font-medium truncate mr-5">
-          Usuarios
-        </h2>
-        <a href="" class="ml-auto flex text-theme-1 dark:text-theme-10">
-          <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
-          Recargar Datos
-        </a>
+<div class="container">
+  <div class="page-header">
+    <div class="page-title">
+      <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+          <li><a href="index.html"><i class="flaticon-home-fill"></i></a></li>
+          <li class="active"><a href="#">Usuarios</a> </li>
+        </ul>
       </div>
-      <div class="grid gap-6 mt-5">
-        <div class="grid gap-6 mt-5">
-          <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-            <button class="button text-white bg-theme-1 shadow-md mr-2">Agregar Usuarios</button>
-            <div class="hidden md:block mx-auto text-gray-600"></div>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col-md-5 col-sm-5 col-6 mb-4 mb-sm-0">
+      <h5 class="mb-0">Usuarios</h5>
+    </div>
+    <div class="col-md-7 col-sm-7 col-6 text-sm-right">
+      <ul class="nav justify-content-end product-sales nav-pills" id="product-sales" role="tablist">
+        <li class="nav-item">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar Usuarios</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+      <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+              <h4>Lista de Usuarios</h4>
+            </div>
           </div>
-          <!-- BEGIN: Data List -->
-          <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table id="example" class="display" style="width:100%">
+        </div>
+        <div class="widget-content widget-content-area">
+          <div class="table-responsive mb-4">
+            <table id="html5-extension" class="table table-striped table-bordered table-hover" style="width:100%">
               <thead>
                 <tr>
-                  <th>Nombre de usuario</th>
+                  <th>Nombre de Usuario</th>
                   <th>Apellidos</th>
                   <th>Nombres</th>
-                  <th>ultimo inicio de sesión</th>
-                  <th>Tipo de usuario</th>
+                  <th>Ultimo inicio de sesión</th>
+                  <th>Tipo de Usuario</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {% for user in users %}
                 <tr>
-                  <td class="text-center">{{ user.username }}</td>
-                  <td class="text-center">{{ user.last_name }}</td>
-                  <td class="text-center">{{ user.first_name }}</td>
-                  <td class="text-center">{{ user.last_login }}</td>
-                  <td class="text-center">{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</td>
-                  <td class="text-center"></td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_login }}</td>
+                  <td>{% if user.is_staff %}Administrador{%else%}Usuario regular{%endif%}</td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-secondary btn-sm">Open</button>
+                      <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split"
+                        id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        data-reference="parent">
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
-          <!-- END: Data List -->
         </div>
       </div>
     </div>
-    <!-- END: General Report -->
   </div>
 </div>
+{% include 'users/user-create-modal.html' %}
 {% endblock %}
 {% block script_content %}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('#example').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copyHtml5',
-        'excelHtml5',
-        'csvHtml5',
-        'pdfHtml5'
-      ]
+  <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+  <script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+  <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+  <script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+  <script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+  <script>
+    $('#html5-extension').DataTable({
+      dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+      buttons: {
+        buttons: [
+          { extend: 'copy', className: 'btn btn-default btn-rounded btn-sm mb-4' },
+          { extend: 'csv', className: 'btn btn-default btn-rounded btn-sm mb-4' },
+          { extend: 'excel', className: 'btn btn-default btn-rounded btn-sm mb-4' },
+          { extend: 'print', className: 'btn btn-default btn-rounded btn-sm mb-4' }
+        ]
+      },
+      "language": {
+        "paginate": {
+          "previous": "<i class='flaticon-arrow-left-1'></i>",
+          "next": "<i class='flaticon-arrow-right'></i>"
+        },
+        "info": "Showing page _PAGE_ of _PAGES_"
+      }
     });
-  });
-</script>
+  </script>
+  <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
 {% endblock %}
