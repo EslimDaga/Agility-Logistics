@@ -1,7 +1,7 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Agregar Liquidaciones</h5>
@@ -9,16 +9,97 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="">Número de liquidación</label>
-          <input type="text" class="form-control" name="">
+      <form action="" method="POST">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Número de liquidación</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Cliente</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Creador</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Operación</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Fecha de liquidación</label>
+                <input type="date" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Dua</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Servicio</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Nave</label>
+                <input type="text" class="form-control" name="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Peso</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">PCS</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Orden</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Moneda</label><br>
+                    <select class="selectpicker" multiple>
+                      <option>Dolares</option>
+                      <option>Soles</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Importe</label>
+                    <input type="text" class="form-control" name="">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Autoriza</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Nº de documento</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Observación</label>
+                <input type="text" class="form-control" name="">
+              </div>
+              <div class="form-group">
+                <label for="">Concepto</label>
+                <input type="text" class="form-control" name="">
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-rounded mb-4 mt-2">Save changes</button>
-        <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Close</button>
-      </div>
+        <div class="modal-footer-liquidations">
+          <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
