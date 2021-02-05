@@ -23,7 +23,7 @@ tbody {
     background-color: #6156ce;
 }
 .form-control {
-    border-radius: 30px;
+    border-radius: 10px;
     border: 1px solid #515365;
 }
 .page-item.active .page-link {
