@@ -13,44 +13,71 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-6">
-              <div class="form-group">
-                <label for="">Número de liquidación</label>
-                <input type="text" class="form-control" name="">
+              <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="form-group">
+                    <label for="">Cliente</label><br>
+                    <select class="selectpicker form-control" data-live-search="true" title="Escoger un cliente...">
+                      <option>Plaza Vea</option>
+                      <option>Ripley</option>
+                    </select>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="">Cliente</label>
-                <input type="text" class="form-control" name="">
-              </div>
-              <div class="form-group">
-                <label for="">Creador</label>
-                <input type="text" class="form-control" name="">
-              </div>
-              <div class="form-group">
-                <label for="">Operación</label>
-                <input type="text" class="form-control" name="">
-              </div>
-              <div class="form-group">
-                <label for="">Fecha de liquidación</label>
-                <input type="date" class="form-control" name="">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Operación</label><br>
+                    <select class="selectpicker">
+                      <option>--</option>
+                      <option value="aerea">Aerea</option>
+                      <option value="maritima">Maritima</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Fecha de liquidación</label>
+                    <input type="date" class="form-control" name="">
+                  </div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="">Dua</label>
                 <input type="text" class="form-control" name="">
               </div>
               <div class="form-group">
-                <label for="">Servicio</label>
+                <label for="">HBL / AWB</label>
                 <input type="text" class="form-control" name="">
               </div>
-              <div class="form-group">
-                <label for="">Nave</label>
-                <input type="text" class="form-control" name="">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Servicio</label><br>
+                    <select class="selectpicker">
+                      <option value="">--</option>
+                      <option value="AFI">AFI</option>
+                      <option value="FFI">FFI</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Nave</label>
+                    <input type="text" class="form-control" name="">
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-6">
               <div class="form-group">
                 <label for="">Peso</label>
                 <input type="text" class="form-control" name="">
               </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- <div class="form-group">
+                <label for="">Peso</label>
+                <input type="text" class="form-control" name="">
+              </div> -->
               <div class="form-group">
                 <label for="">PCS</label>
                 <input type="text" class="form-control" name="">
@@ -64,8 +91,8 @@
                   <div class="form-group">
                     <label for="">Moneda</label><br>
                     <select class="selectpicker" multiple>
-                      <option>Dolares</option>
-                      <option>Soles</option>
+                      <option value="dolares">Dolares</option>
+                      <option value="soles">Soles</option>
                     </select>
                   </div>
                 </div>
@@ -75,10 +102,6 @@
                     <input type="text" class="form-control" name="">
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="">Autoriza</label>
-                <input type="text" class="form-control" name="">
               </div>
               <div class="form-group">
                 <label for="">Nº de documento</label>
