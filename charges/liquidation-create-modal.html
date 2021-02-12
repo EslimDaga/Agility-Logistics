@@ -18,8 +18,9 @@
                   <div class="form-group">
                     <label for="">Cliente</label><br>
                     <select class="selectpicker form-control" data-live-search="true" title="Escoger un cliente...">
-                      <option>Plaza Vea</option>
-                      <option>Ripley</option>
+                      {% for client in clients %}
+                      <option value="{{client.identification_number}}">{{ client.name }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                 </div>
@@ -63,13 +64,13 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="">Nave</label>
+                    <label for="">Peso</label>
                     <input type="text" class="form-control" name="">
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="">Peso</label>
+                <label for="">Nave</label>
                 <input type="text" class="form-control" name="">
               </div>
             </div>
@@ -79,11 +80,11 @@
                 <input type="text" class="form-control" name="">
               </div> -->
               <div class="form-group">
-                <label for="">PCS</label>
+                <label for="">Orden</label>
                 <input type="text" class="form-control" name="">
               </div>
               <div class="form-group">
-                <label for="">Orden</label>
+                <label for="">Concepto</label>
                 <input type="text" class="form-control" name="">
               </div>
               <div class="row">
@@ -111,9 +112,23 @@
                 <label for="">Observación</label>
                 <input type="text" class="form-control" name="">
               </div>
-              <div class="form-group">
-                <label for="">Concepto</label>
-                <input type="text" class="form-control" name="">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">PCS</label>
+                    <input type="text" class="form-control" name="">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Estado</label><br>
+                    <select class="selectpicker">
+                      <option value="">--</option>
+                      <option value="inactivo">Inactivo</option>
+                      <option value="activo">Pendiente</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
