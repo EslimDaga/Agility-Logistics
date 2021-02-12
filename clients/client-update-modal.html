@@ -1,0 +1,82 @@
+{% for client in clients %}
+{% if modal_client_id == client %}
+<div class="modal fade" id="{{client.identification_number}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      {% load widget_tweaks %}
+
+      <form method="post" action="{% url 'clients' %}">
+        {% csrf_token %}
+        
+        <div class="modal-header">
+            <h5 class="modal-title">Cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        
+          <div class="modal-body">
+            {% for field in update_form %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {% if field.errors %}
+              {% render_field field class="form-control is-invalid" placeholder=field.label %}
+              {% for error in field.errors %}
+              <p class="help-block text-danger">(*) {{ error }}</p>
+              {% endfor %}
+              {% else %}
+              {% if field.value %}
+              {% render_field field class="form-control is-valid" placeholder=field.label %}
+              {% else %}
+              {% render_field field class="form-control" placeholder=field.label %}
+              {% endif %}
+              {% endif %}
+            </div>
+            {% endfor %}
+            <input type="hidden" name="form_type" value="update_form">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+          </div>
+      
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="modal fade" id="{{client.identification_number}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      <form method="post" action="{% url 'clients' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Nombre de usuario</label>
+            <input type="text" class="form-control" name="identification_number" value="{{client.identification_number}}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="">Nombres</label>
+            <input type="text" class="form-control" name="name" value="{{client.name}}">
+          </div>
+          <input type="hidden" name="form_type" value="update_form">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
