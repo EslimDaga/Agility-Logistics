@@ -23,7 +23,15 @@
     <div class="col-md-7 col-sm-7 col-6 text-sm-right">
       <ul class="nav justify-content-end product-sales nav-pills" id="product-sales" role="tablist">
         <li class="nav-item">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar Usuarios</button>
+          {% if request.user.is_staff %}
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Agregar Usuarios
+          </button>
+          {% else %}
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" disabled>
+            Agregar Usuarios
+          </button>
+          {% endif %}
         </li>
       </ul>
     </div>
@@ -64,11 +72,19 @@
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-secondary btn-sm" onclick="$('#{{user.username}}_update_modal').modal('show');"><i class="flaticon-view-3"></i></button>
+                      {% if request.user.is_staff %}
                       <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split"
                         id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         data-reference="parent">
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
+                      {% else %}
+                      <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split"
+                        id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        data-reference="parent" disabled>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      {% endif %}
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
                         <a class="dropdown-item" href="#">Cambiar contraseña</a>
                         <a class="dropdown-item" href="{% url 'delete-user' user.username %}">Eliminar</a>
