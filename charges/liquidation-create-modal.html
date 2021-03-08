@@ -9,7 +9,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="POST">
+      <form method="POST" action="{% url 'liquidations' %}">
+        {% csrf_token %}
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-6">
@@ -17,9 +18,9 @@
                 <div class="col-sm-12 col-12">
                   <div class="form-group">
                     <label for="">Cliente</label><br>
-                    <select class="selectpicker form-control" data-live-search="true" title="Escoger un cliente...">
+                    <select name="client" class="selectpicker form-control" data-live-search="true" title="Escoger un cliente...">
                       {% for client in clients %}
-                      <option value="{{client.identification_number}}">{{ client.name }}</option>
+                      <option value="{{client.name}}">{{ client.name }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -29,34 +30,32 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Operación</label><br>
-                    <select class="selectpicker">
-                      <option>--</option>
-                      <option value="aerea">Aerea</option>
-                      <option value="maritima">Maritima</option>
+                    <select name="operation" class="selectpicker" title="Seleccionar operación">
+                      <option value="AEREA">AEREA</option>
+                      <option value="MARITIMA">MARITIMA</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Fecha de liquidación</label>
-                    <input type="date" class="form-control" name="">
+                    <input name="liquidation_date" type="date" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="">Dua</label>
-                <input type="text" class="form-control" name="">
+                <input name="dua" type="text" class="form-control">
               </div>
               <div class="form-group">
                 <label for="">HBL / AWB</label>
-                <input type="text" class="form-control" name="">
+                <input name="import_document" type="text" class="form-control">
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Servicio</label><br>
-                    <select class="selectpicker">
-                      <option value="">--</option>
+                    <select name="service" class="selectpicker" title="Seleccionar servicio">
                       <option value="AFI">AFI</option>
                       <option value="FFI">FFI</option>
                     </select>
@@ -65,73 +64,61 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Peso</label>
-                    <input type="text" class="form-control" name="">
+                    <input name="weight" type="text" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="">Nave</label>
-                <input type="text" class="form-control" name="">
+                <input name="ship" type="text" class="form-control">
               </div>
             </div>
             <div class="col-sm-6">
-              <!-- <div class="form-group">
-                <label for="">Peso</label>
-                <input type="text" class="form-control" name="">
-              </div> -->
               <div class="form-group">
                 <label for="">Orden</label>
-                <input type="text" class="form-control" name="">
+                <input name="order" type="text" class="form-control">
               </div>
               <div class="form-group">
                 <label for="">Concepto</label>
-                <input type="text" class="form-control" name="">
+                <input name="concept" type="text" class="form-control">
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Moneda</label><br>
-                    <select class="selectpicker" multiple>
-                      <option value="dolares">Dolares</option>
-                      <option value="soles">Soles</option>
+                    <select name="currency" class="selectpicker" title="Seleccionar moneda">
+                      <option value="DOLARES">DOLARES</option>
+                      <option value="SOLES">SOLES</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">Importe</label>
-                    <input type="text" class="form-control" name="">
+                    <input name="amount" type="text" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="">Nº de documento</label>
-                <input type="text" class="form-control" name="">
+                <input name="document_number" type="text" class="form-control">
               </div>
               <div class="form-group">
                 <label for="">Observación</label>
-                <input type="text" class="form-control" name="">
+                <input name="observation" type="text" class="form-control">
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="">PCS</label>
-                    <input type="text" class="form-control" name="">
+                    <input name="pcs" type="text" class="form-control">
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="">Estado</label><br>
-                    <select class="selectpicker">
-                      <option value="">--</option>
-                      <option value="inactivo">Inactivo</option>
-                      <option value="activo">Pendiente</option>
-                    </select>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
+          <input type="hidden" name="form_type" value="create_form">
         </div>
         <div class="modal-footer-liquidations">
           <button type="submit" class="btn btn-primary mr-2">Guardar</button>
