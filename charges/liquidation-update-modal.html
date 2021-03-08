@@ -1,0 +1,158 @@
+{% for liquidation in liquidations %}
+<div class="modal fade bd-example-modal-xl" id="liquidation{{liquidation.id}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Liquidaciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% load static %}
+      <form method="POST" action="{% url 'liquidations' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="form-group">
+                    <label for="">Cliente</label><br>
+                    <select id="liquidation{{liquidation.id}}_client" name="client" class="selectpicker form-control" data-live-search="true" title="Escoger un cliente...">
+                      {% for client in clients %}
+                      <option value="{{client.name}}">{{ client.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Operación</label><br>
+                    <select id="liquidation{{liquidation.id}}_operation" name="operation" class="selectpicker" title="Escoge operación">
+                      <option value="AEREA">AEREA</option>
+                      <option value="MARITIMA">MARITIMA</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Fecha de liquidación</label>
+                    <input name="liquidation_date" type="date" class="form-control" value="{{liquidation.liquidation_date|date:'Y-m-d'}}">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Dua</label>
+                <input name="dua" type="text" class="form-control" value="{{liquidation.dua}}">
+              </div>
+              <div class="form-group">
+                <label for="">HBL / AWB</label>
+                <input name="import_document" type="text" class="form-control" value="{{liquidation.import_document}}">
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Servicio</label><br>
+                    <select id="liquidation{{liquidation.id}}_service"  name="service" class="selectpicker" title="Escoge un tipo de servicio">
+                      <option value="AFI">AFI</option>
+                      <option value="FFI">FFI</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Peso</label>
+                    <input name="weight" type="text" class="form-control" value="{{liquidation.weight}}">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Nave</label>
+                <input name="ship" type="text" class="form-control" value="{{liquidation.ship}}">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Orden</label>
+                <input name="order" type="text" class="form-control" value="{{liquidation.order}}">
+              </div>
+              <div class="form-group">
+                <label for="">Concepto</label>
+                <input name="concept" type="text" class="form-control" value="{{liquidation.concept}}">
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Moneda</label><br>
+                    <select id="liquidation{{liquidation.id}}_currency" name="currency" class="selectpicker" title="Tipo de moneda">
+                      <option value="DOLARES">DOLARES</option>
+                      <option value="SOLES">SOLES</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Importe</label>
+                    <input name="amount" type="text" class="form-control" value="{{liquidation.amount}}">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Nº de documento</label>
+                <input name="document_number" type="text" class="form-control" value="{{liquidation.document_number}}">
+              </div>
+              <div class="form-group">
+                <label for="">Observación</label>
+                <input name="observation" type="text" class="form-control" value="{{liquidation.observation}}">
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">PCS</label>
+                    <input name="pcs" type="text" class="form-control" value="{{liquidation.pcs}}">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="">Estado</label><br>
+                    {% if request.user.is_staff %}
+                    <select id="liquidation{{liquidation.id}}_status" name="status" class="selectpicker" title="Estado de liquidacion">
+                      <option value="PENDIENTE">PENDIENTE</option>
+                      <option value="CANCELADO">CANCELADO</option>
+                    </select>
+                    {% else %}
+                    <select id="liquidation{{liquidation.id}}_status" name="status" class="selectpicker" title="Estado de liquidacion" disabled>
+                      <option value="PENDIENTE">PENDIENTE</option>
+                      <option value="CANCELADO">CANCELADO</option>
+                    </select>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="id" value="{{liquidation.id}}">
+          <input type="hidden" name="form_type" value="update_form">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" onclick="getDocument({{liquidation.id}})">
+            <i class="flaticon-money"></i> Excel
+          </button>
+          <button type="submit" class="submit-btn btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#liquidation{{liquidation.id}}_client').selectpicker('val', '{{liquidation.client}}');
+  $('#liquidation{{liquidation.id}}_operation').selectpicker('val', '{{liquidation.operation}}');
+  $('#liquidation{{liquidation.id}}_service').selectpicker('val', '{{liquidation.service}}');
+  $('#liquidation{{liquidation.id}}_currency').selectpicker('val', '{{liquidation.currency}}');
+  $('#liquidation{{liquidation.id}}_status').selectpicker('val', '{{liquidation.status}}');
+</script>
+{% endfor %}
